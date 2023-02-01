@@ -1,0 +1,31 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: secure-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: gke-foobar-public-ip
+    networking.gke.io/managed-certificates: foobar-certificate
+    networking.gke.io/v1beta1.FrontendConfig: ingress-security-config
+spec:
+  rules:
+  - host: foo.domain.com
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: foo
+            port:
+              number: 8080
+  - host: bar.domain.com
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bar
+            port:
+              number: 8080

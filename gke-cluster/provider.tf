@@ -1,7 +1,6 @@
 #############################################################################
 # Provider versions and configuration                                       #
 #############################################################################
-
 terraform {
   required_providers {
     google = {
@@ -22,7 +21,7 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "04a17e60ca0de333-tf-state-bucket"
+    bucket = "private-gke-cluster-state-1138"
     prefix = "pocs/gke-gateway"
   }
   required_version = ">= 1.1"
